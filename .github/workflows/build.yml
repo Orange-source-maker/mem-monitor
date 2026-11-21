@@ -5,6 +5,9 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,3 +35,22 @@ jobs:
           name: 内存监控-APK
           path: app/build/outputs/apk/release/*.apk
           if-no-files-found: error
+
+      - name: 读取版本号
+        id: ver
+        run: |
+          VER=$(grep 'versionName' app/build.gradle.kts | sed -E 's/.*"(.*)".*/\1/')
+          echo "version=$VER" >> "$GITHUB_OUTPUT"
+
+      - name: 重命名 APK
+        run: cp app/build/outputs/apk/release/app-release.apk "内存监控-${{ steps.ver.outputs.version }}.apk"
+
+      - name: 发布到 Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.ver.outputs.version }}-b${{ github.run_number }}
+          name: 内存监控 v${{ steps.ver.outputs.version }}（构建 ${{ github.run_number }}）
+          body: |
+            自动构建发布。下载下方「内存监控-x.x.apk」安装即可（无需登录）。
+            覆盖升级无需卸载；首次使用请阅读仓库 README 的 Shizuku 激活说明。
+          files: 内存监控-${{ steps.ver.outputs.version }}.apk

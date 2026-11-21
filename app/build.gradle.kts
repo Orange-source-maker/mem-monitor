@@ -11,17 +11,25 @@ android {
         applicationId = "com.memmonitor"
         minSdk = 26          // Android 8.0 及以上
         targetSdk = 34
-        versionCode = 2
-        versionName = "1.1"
+        versionCode = 3
+        versionName = "1.2"
     }
 
-    // 签名策略：release 也使用调试签名（AGP 自动生成的默认调试密钥）。
-    // 云端每次构建密钥不同，覆盖安装前需先卸载旧版；同一构建产物可反复安装。
-    // 个人自用工具的分发方式，不用于上架应用商店。
+    // 固定签名：密钥库随仓库公开（个人开源工具分发的常规做法）。
+    // 所有构建签名一致，用户可直接覆盖升级，无需卸载。
+    signingConfigs {
+        create("release") {
+            storeFile = file("keystore/release.keystore")
+            storePassword = "memmonitor"
+            keyAlias = "memmonitor"
+            keyPassword = "memmonitor"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 
