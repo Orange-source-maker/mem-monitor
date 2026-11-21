@@ -11,8 +11,8 @@ android {
         applicationId = "com.memmonitor"
         minSdk = 26          // Android 8.0 及以上
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
     }
 
     // 签名策略：release 也使用调试签名（AGP 自动生成的默认调试密钥）。

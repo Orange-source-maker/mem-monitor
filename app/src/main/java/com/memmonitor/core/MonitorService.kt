@@ -8,6 +8,7 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ServiceInfo
+import android.graphics.Color
 import android.os.Build
 import android.os.IBinder
 import com.memmonitor.R
@@ -183,15 +184,20 @@ class MonitorService : Service() {
         )
         val builder = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this, CHANNEL_ID)
         else @Suppress("DEPRECATION") Notification.Builder(this)
-        return builder
+        builder
             .setSmallIcon(R.drawable.ic_stat_memory)
             .setContentTitle(getString(R.string.notif_title))
             .setContentText(text)
             .setOngoing(true)
             .setOnlyAlertOnce(true)
             .setContentIntent(tap)
+            // 进度条：满条 = 本机总内存，蓝色部分长度 = 已用占比
+            .setColor(Color.parseColor("#3D8BFD"))
             .addAction(0, getString(R.string.action_stop), stop)
-            .build()
+        if (s != null) {
+            builder.setProgress(100, s.usedPercent.toInt().coerceIn(0, 100), false)
+        }
+        return builder.build()
     }
 
     private fun updateNotification(s: MemorySampler.Sample) {
