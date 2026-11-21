@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">内存监控</string>
+    <string name="channel_name">内存监控常驻通知</string>
+
+    <string name="btn_start">开始监控</string>
+    <string name="btn_stop">停止监控</string>
+    <string name="action_stop">停止</string>
+
+    <string name="notif_title">内存监控运行中</string>
+    <string name="notif_starting">正在采样…</string>
+    <string name="notif_text">占用 %1$s · 已用 %2$s / %3$s · 可用 %4$s</string>
+
+    <string name="label_used">已用</string>
+    <string name="label_avail">可用</string>
+    <string name="label_total">总内存</string>
+    <string name="low_mem_warning">⚠ 系统已进入低内存状态，后台应用可能被清理</string>
+    <string name="swap_fmt">Swap：%1$s / %2$s</string>
+    <string name="swap_none">Swap：无</string>
+
+    <string name="rank_title">各应用内存排行（PSS）</string>
+    <string name="rank_updated">更新于 %1$s</string>
+    <string name="rank_waiting">Shizuku 已就绪，等待第一轮排行采样…</string>
+    <string name="rank_no_shizuku">未检测到 Shizuku。\n各应用内存排行需要 Shizuku（免费开源、免 root）提供系统级数据。整机监控不受影响。请先安装 Shizuku 应用。</string>
+    <string name="rank_not_running">Shizuku 已安装但未激活。\n安卓 11+：打开 Shizuku → 通过无线调试启动；或连接电脑执行 adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh。详见 README。</string>
+    <string name="rank_denied">Shizuku 已激活，但尚未授权本应用。点击右侧按钮授权。</string>
+    <string name="rank_failed">排行采样失败：%1$s</string>
+
+    <string name="btn_install_shizuku">安装引导</string>
+    <string name="btn_activate">去激活</string>
+    <string name="btn_authorize">授权</string>
+    <string name="btn_retry">重试</string>
+    <string name="shizuku_ready">Shizuku 已就绪</string>
+
+    <string name="settings_title">设置</string>
+    <string name="setting_sample_interval">整机刷新间隔</string>
+    <string name="setting_rank_interval">排行刷新间隔</string>
+    <string name="setting_floating">悬浮窗显示</string>
+    <string name="setting_boot">开机自动监控</string>
+</resources>
