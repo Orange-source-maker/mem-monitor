@@ -130,7 +130,7 @@ object AppMemRepository {
      * 典型行："    234,567K: com.tencent.mm (pid 12345)"
      * 也兼容 "234,567K: name (pid 1234 / activities)" 等变体。
      */
-    internal fun parseMeminfo(output: String): List<Row> {
+    private fun parseMeminfo(output: String): List<Row> {
         val rows = ArrayList<Row>()
         var inSection = false
         val lineRe = Regex("^\\s*([\\d,]+)K:\\s+(.+?)\\s+\\(pid\\s+(\\d+)")
