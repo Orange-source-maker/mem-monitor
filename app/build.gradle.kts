@@ -11,8 +11,8 @@ android {
         applicationId = "com.memmonitor"
         minSdk = 26          // Android 8.0 及以上
         targetSdk = 34
-        versionCode = 3
-        versionName = "1.2"
+        versionCode = 4
+        versionName = "1.3"
     }
 
     // 固定签名：密钥库随仓库公开（个人开源工具分发的常规做法）。

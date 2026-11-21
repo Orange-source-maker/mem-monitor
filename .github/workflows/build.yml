@@ -43,7 +43,7 @@ jobs:
           echo "version=$VER" >> "$GITHUB_OUTPUT"
 
       - name: 重命名 APK
-        run: cp app/build/outputs/apk/release/app-release.apk "内存监控-${{ steps.ver.outputs.version }}.apk"
+        run: cp app/build/outputs/apk/release/app-release.apk "MemMonitor-${{ steps.ver.outputs.version }}.apk"
 
       - name: 发布到 Releases
         uses: softprops/action-gh-release@v2
@@ -51,6 +51,6 @@ jobs:
           tag_name: v${{ steps.ver.outputs.version }}-b${{ github.run_number }}
           name: 内存监控 v${{ steps.ver.outputs.version }}（构建 ${{ github.run_number }}）
           body: |
-            自动构建发布。下载下方「内存监控-x.x.apk」安装即可（无需登录）。
+            自动构建发布。下载下方「MemMonitor-x.x.apk」安装即可（无需登录）。
             覆盖升级无需卸载；首次使用请阅读仓库 README 的 Shizuku 激活说明。
-          files: 内存监控-${{ steps.ver.outputs.version }}.apk
+          files: MemMonitor-${{ steps.ver.outputs.version }}.apk

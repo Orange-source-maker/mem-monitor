@@ -38,4 +38,14 @@ object Prefs {
 
     fun setBootStart(context: Context, enabled: Boolean) =
         sp(context).edit().putBoolean(KEY_BOOT, enabled).apply()
+
+    /** 悬浮窗位置记忆（-1 表示未保存过，用默认位置） */
+    fun floatingX(context: Context): Int =
+        sp(context).getInt("floating_x", -1)
+
+    fun floatingY(context: Context): Int =
+        sp(context).getInt("floating_y", -1)
+
+    fun setFloatingPos(context: Context, x: Int, y: Int) =
+        sp(context).edit().putInt("floating_x", x).putInt("floating_y", y).apply()
 }
